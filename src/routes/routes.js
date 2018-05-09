@@ -3,8 +3,8 @@ import DashboardLayout from '../components/Dashboard/Layout/DashboardLayout.vue'
 import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 
 // Admin pages
-import Overview from 'src/components/Dashboard/Views/Overview.vue'
-import UserProfile from 'src/components/Dashboard/Views/UserProfile.vue'
+import Overview from 'src/components/Dashboard/Views/InputBobot.vue'
+import UserProfile from 'src/components/Dashboard/Views/InputKandidat.vue'
 import Notifications from 'src/components/Dashboard/Views/Notifications.vue'
 import Icons from 'src/components/Dashboard/Views/Icons.vue'
 import Maps from 'src/components/Dashboard/Views/Maps.vue'
@@ -16,20 +16,20 @@ const routes = [
   {
     path: '/',
     component: DashboardLayout,
-    redirect: '/admin/overview'
+    redirect: '/admin/input-bobot'
   },
   {
     path: '/admin',
     component: DashboardLayout,
-    redirect: '/admin/stats',
+    redirect: '/admin/input-bobot',
     children: [
       {
-        path: 'overview',
+        path: 'input-bobot',
         name: 'Atur Bobot',
         component: Overview
       },
       {
-        path: 'stats',
+        path: 'input-kandidat',
         name: 'Input Nilai Variabel Setiap HP',
         component: UserProfile
       },

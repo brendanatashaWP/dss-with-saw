@@ -6,12 +6,12 @@ const SidebarStore = {
     {
       name: 'Step 1: Atur Bobot',
       icon: 'ti-panel',
-      path: '/admin/overview'
+      path: '/admin/input-bobot'
     },
     {
       name: 'Step 2: Input Nilai',
       icon: 'ti-user',
-      path: '/admin/stats'
+      path: '/admin/input-kandidat'
     },
     {
       name: 'Step 3: Hasilnya',
