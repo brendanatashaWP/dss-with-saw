@@ -13,10 +13,15 @@
     "test": "npm run unit && npm run e2e"
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
+    "@okta/jwt-verifier": "0.0.11",
+    "@okta/okta-vue": "^1.0.0",
+    "axios": "^0.18.0",
     "bootstrap": "^3.3.7",
     "chartist": "^0.10.1",
-    "lodash": "^4.17.10",
+    "cors": "^2.8.4",
+    "epilogue": "^0.7.1",
+    "sequelize": "^4.37.6",
+    "sqlite3": "^4.0.0",
     "vue": "^2.3.0",
     "vue-clickaway": "^2.1.0",
     "vue-router": "^2.2.0"

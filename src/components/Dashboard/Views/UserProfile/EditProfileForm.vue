@@ -1,10 +1,16 @@
 <template>
   <div class="card">
     <div class="header">
-      <h4 class="title">Kandidat 1</h4>
+      <h4 class="title">Kandidat</h4>
     </div>
     <div class="content">
       <form>
+        <div class="row">
+          <div class="col-md-5">
+            <label for="namaKandidat">Nama kandidat:</label>
+            <input type="text" v-model="namaKandidat">
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-5">
             <label for="ram">RAM </label>
@@ -65,6 +71,31 @@
             </select>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-5">
+            <label for="ram">Screen</label>
+            <select v-model="screenSelected">
+              <option disabled value=''>Please select one</option>
+              <option>6,1 - 6,5</option>
+              <option>5,6 - 6</option>
+              <option>5,1 - 5,5</option>
+              <option>4,5 - 5</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <label for="ram">Rear Camera</label>
+            <select v-model="rearCameraSelected">
+              <option disabled value=''>Please select one</option>
+              <option>16</option>
+              <option>13</option>
+              <option>12</option>
+              <option>8</option>
+              <option>5</option>
+            </select>
+          </div>
+        </div>
       </form>
     </div>
   </div>
@@ -73,33 +104,18 @@
   export default {
     data () {
       return {
-        rams: ([
-          {id: 0, size: '8 GB'},
-          {id: 1, size: '6 GB'},
-          {id: 2, size: '4 GB'},
-          {id: 3, size: '3 GB'},
-          {id: 4, size: '2 GB'}
-        ]),
-        fields: {
-          id: 'id',
-          size: 'size'
-        },
-        user: {
-          company: 'Paper Dashboard',
-          username: 'michael23',
-          email: '',
-          lastName: 'Faker',
-          address: 'Melbourne, Australia',
-          city: 'melbourne',
-          postalCode: '',
-          aboutMe: `Oh so, your weak rhyme. You doubt I'll bother, reading into it.I'll probably won't, left to my own devicesBut that's the difference in our opinions.`
-        }
+        id: '',
+        namaKandidat: '',
+        memorySelected: '',
+        priceSelected: '',
+        batterySelected: '',
+        processorSelected: '',
+        ramSelected: '',
+        screenSelected: '',
+        rearCameraSelected: ''
       }
     },
     methods: {
-      updateProfile () {
-        alert('Your data: ' + JSON.stringify(this.user))
-      }
     }
   }
 

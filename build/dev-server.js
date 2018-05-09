@@ -8,6 +8,8 @@ if (!process.env.NODE_ENV) {
 var opn = require('opn')
 var path = require('path')
 var express = require('express')
+const bodyParser = require('body-parser')
+const controller = require('./controller')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = process.env.NODE_ENV === 'testing'
@@ -63,6 +65,9 @@ app.use(hotMiddleware)
 // serve pure static assets
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
 var uri = 'http://localhost:' + port
 

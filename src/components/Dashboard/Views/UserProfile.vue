@@ -31,7 +31,9 @@
       <div class="col-lg-3 col-md-4">
         <edit-profile-form>
         </edit-profile-form>
-      </div>      
+      </div>
+      <button type="submit" class="btn btn-info btn-fill" style="float:left"><a href="/#/admin/overview" style="color:white" class="ti-arrow-left"> Back</a></button>
+      <button type="submit" class="btn btn-info btn-fill" style="float:right"><a href="/#/admin/stats" style="color:white" class="ti-arrow-right"> Next</a></button>
     </div>
 </template>
 <script>
@@ -39,6 +41,11 @@
   export default {
     components: {
       EditProfileForm
+    },
+    data () {
+      return {
+        items: []
+      }
     }
   }
 
