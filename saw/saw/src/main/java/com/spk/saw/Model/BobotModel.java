@@ -1,12 +1,12 @@
 package com.spk.saw.Model;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
+@Component
 @Entity
 @Table(name = "bobot")
 @EntityListeners(AuditingEntityListener.class)
@@ -23,71 +23,71 @@ public class BobotModel implements Serializable{
         this.id = id;
     }
 
-    public Integer getBobotRam() {
+    public Double getBobotRam() {
         return bobotRam;
     }
 
-    public void setBobotRam(Integer bobotRam) {
+    public void setBobotRam(Double bobotRam) {
         this.bobotRam = bobotRam;
     }
 
-    public Integer getBobotPro() {
+    public Double getBobotPro() {
         return bobotPro;
     }
 
-    public void setBobotPro(Integer bobotPro) {
+    public void setBobotPro(Double bobotPro) {
         this.bobotPro = bobotPro;
     }
 
-    public Integer getBobotInternalMemory() {
+    public Double getBobotInternalMemory() {
         return bobotInternalMemory;
     }
 
-    public void setBobotInternalMemory(Integer bobotInternalMemory) {
+    public void setBobotInternalMemory(Double bobotInternalMemory) {
         this.bobotInternalMemory = bobotInternalMemory;
     }
 
-    public Integer getBobotScreen() {
+    public Double getBobotScreen() {
         return bobotScreen;
     }
 
-    public void setBobotScreen(Integer bobotScreen) {
+    public void setBobotScreen(Double bobotScreen) {
         this.bobotScreen = bobotScreen;
     }
 
-    public Integer getBobotPrice() {
+    public Double getBobotPrice() {
         return bobotPrice;
     }
 
-    public void setBobotPrice(Integer bobotPrice) {
+    public void setBobotPrice(Double bobotPrice) {
         this.bobotPrice = bobotPrice;
     }
 
-    public Integer getBobotBattery() {
+    public Double getBobotBattery() {
         return bobotBattery;
     }
 
-    public void setBobotBattery(Integer bobotBattery) {
+    public void setBobotBattery(Double bobotBattery) {
         this.bobotBattery = bobotBattery;
     }
 
-    public Integer getBobotBrand() {
+    public Double getBobotBrand() {
         return bobotBrand;
     }
 
-    public void setBobotBrand(Integer bobotBrand) {
+    public void setBobotBrand(Double bobotBrand) {
         this.bobotBrand = bobotBrand;
     }
 
-    public Integer getBobotRearCamera() {
+    public Double getBobotRearCamera() {
         return bobotRearCamera;
     }
 
-    public void setBobotRearCamera(Integer bobotRearCamera) {
+    public void setBobotRearCamera(Double bobotRearCamera) {
         this.bobotRearCamera = bobotRearCamera;
     }
 
     @Column (nullable = false)
-    private Integer bobotRam, bobotPro, bobotInternalMemory, bobotScreen, bobotPrice, bobotBattery, bobotBrand, bobotRearCamera;
+    private Double bobotRam, bobotPro, bobotInternalMemory, bobotScreen, bobotPrice, bobotBattery, bobotBrand, bobotRearCamera;
 
 }

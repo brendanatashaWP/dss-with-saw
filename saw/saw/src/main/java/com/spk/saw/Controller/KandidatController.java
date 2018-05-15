@@ -4,17 +4,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.spk.saw.Exception.ResourceNotFoundException2;
 import com.spk.saw.Interface.KandidatInter;
+import com.spk.saw.Interface.MatriksInter;
 import com.spk.saw.Interface.NilaiInter;
 import com.spk.saw.Model.KandidatModel;
+import com.spk.saw.Model.MatriksModel;
 import com.spk.saw.Model.NilaiModel;
-import net.minidev.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -26,6 +25,10 @@ public class KandidatController {
     NilaiInter nilaiInter;
     @Autowired
     NilaiModel nilaiModel;
+    @Autowired
+    MatriksModel[] matriksModel;
+    @Autowired
+    MatriksInter matriksInter;
 
     //Post kandidat
     @PostMapping("/step2")
@@ -65,6 +68,7 @@ public class KandidatController {
             kandidatModel.setScreen(kandidat.getScreen());
             KandidatModel updateKandidat = kandidatInter.save(kandidatModel);
             translateNilai(updateKandidat);
+
 //        }
         return updateKandidat;
     }
@@ -78,6 +82,7 @@ public class KandidatController {
 //        for (int x = 0; x <= 5; x++)
 //        KandidatModel kandidatModel = getKandidatById(x);
         nilaiModel.setId(kandidatModel.getId());
+        nilaiModel.setNamaKandidat(kandidatModel.getNamaKandidat());
             switch (kandidatModel.getRam()) {
                 case "8 GB" : nilaiModel.setNilaiRam((double) 1); break;
                 case "6 GB" : nilaiModel.setNilaiRam(0.75); break;
@@ -97,10 +102,11 @@ public class KandidatController {
                 case "2000 - 3000" : nilaiModel.setNilaiBattery((double) 0); break;
             }
             switch (kandidatModel.getPrice()) {
-                case "6jt - 7jt" : nilaiModel.setNilaiPrice((double) 1); break;
-                case "4jt - 5jt" : nilaiModel.setNilaiPrice(0.75); break;
+                case "6jt - 7jt" : nilaiModel.setNilaiPrice((double) 0); break;
+                case "4jt - 5jt" : nilaiModel.setNilaiPrice(0.25); break;
                 case "3jt - 4jt" : nilaiModel.setNilaiPrice(0.50); break;
-                case "2jt - 3jt" : nilaiModel.setNilaiPrice(0.0); break;
+                case "2jt - 3jt" : nilaiModel.setNilaiPrice(0.75); break;
+                case "1jt - 2jt" : nilaiModel.setNilaiPrice((double) 1); break;
             }
             switch (kandidatModel.getIntMemory()) {
                 case "128 Gb" : nilaiModel.setNilaiIntMemory((double) 1); break;
@@ -131,5 +137,80 @@ public class KandidatController {
             NilaiModel updateNilai = nilaiInter.save(nilaiModel);
             return updateNilai;
     }
-//    }
+
+    //Get all hasil translate
+    @GetMapping("/hasil")
+    public List<NilaiModel> getAllNilai() {
+        hitungMatriks();
+        return nilaiInter.findAll();
+    }
+
+    public List<NilaiModel> getAllNilai2() {
+        return nilaiInter.findAll();
+    }
+
+    @GetMapping("/get-matriks")
+    public List<MatriksModel> getAllMatriks() {
+        return matriksInter.findAll();
+    }
+
+//    @PostMapping("/hitung-matriks")
+    private MatriksModel[] hitungMatriks() {
+        NilaiModel[] nilaiModel = getAllNilai2().toArray(new NilaiModel[0]);
+//        MatriksModel[] matriksModels = new MatriksModel[6];
+        Double ramMax = 0.0, proMax = 0.0, batMax = 0.0, priceMax = 0.0, intMemoryMax = 0.0, screenMax = 0.0, rearCameraMax = 0.0, brandMax = 0.0;
+        for (int x = 0; x < nilaiInter.count(); x++) {
+            if (x == 0) {
+                ramMax = nilaiModel[x].getNilaiRam();
+                proMax = nilaiModel[x].getNilaiPro();
+                batMax = nilaiModel[x].getNilaiBattery();
+                priceMax = nilaiModel[x].getNilaiPrice();
+                intMemoryMax = nilaiModel[x].getNilaiIntMemory();
+                screenMax = nilaiModel[x].getNilaiScreen();
+                rearCameraMax = nilaiModel[x].getNilaiRearCamera();
+                brandMax = nilaiModel[x].getNilaiBrand();
+            } else {
+                if (nilaiModel[x].getNilaiRam() > ramMax) {
+                    ramMax = nilaiModel[x].getNilaiRam();
+                }
+                if (nilaiModel[x].getNilaiBattery() > batMax) {
+                    batMax = nilaiModel[x].getNilaiBattery();
+                }
+                if (nilaiModel[x].getNilaiBrand() > brandMax) {
+                    brandMax = nilaiModel[x].getNilaiBrand();
+                }
+                if (nilaiModel[x].getNilaiIntMemory() > intMemoryMax) {
+                    intMemoryMax = nilaiModel[x].getNilaiIntMemory();
+                }
+                if (nilaiModel[x].getNilaiPrice() > priceMax) {
+                    priceMax = nilaiModel[x].getNilaiPrice();
+                }
+                if (nilaiModel[x].getNilaiPro() > proMax) {
+                    proMax = nilaiModel[x].getNilaiPro();
+                }
+                if (nilaiModel[x].getNilaiRearCamera() > rearCameraMax) {
+                    rearCameraMax = nilaiModel[x].getNilaiRearCamera();
+                }
+                if (nilaiModel[x].getNilaiScreen() > screenMax) {
+                    screenMax = nilaiModel[x].getNilaiScreen();
+                }
+            }
+        }
+        MatriksModel[] matriksModelAkhir = new MatriksModel[6];
+        for (int x = 0; x < nilaiInter.count(); x++) {
+            matriksModel[0].setId(nilaiModel[x].getId());
+            matriksModel[0].setNamaKandidat(nilaiModel[x].getNamaKandidat());
+            matriksModel[0].setNilaiRam(nilaiModel[x].getNilaiRam() / ramMax);
+            matriksModel[0].setNilaiPro(nilaiModel[x].getNilaiPro() / proMax);
+            matriksModel[0].setNilaiBrand(nilaiModel[x].getNilaiBrand() / brandMax);
+            matriksModel[0].setNilaiBattery(nilaiModel[x].getNilaiBattery() / batMax);
+            matriksModel[0].setNilaiPrice(nilaiModel[x].getNilaiPrice() / priceMax);
+            matriksModel[0].setNilaiIntMemory(nilaiModel[x].getNilaiIntMemory() / intMemoryMax);
+            matriksModel[0].setNilaiScreen(nilaiModel[x].getNilaiScreen() / screenMax);
+            matriksModel[0].setNilaiRearCamera(nilaiModel[x].getNilaiRearCamera() / rearCameraMax);
+
+            matriksModelAkhir[x] = matriksInter.save(matriksModel[0]);
+        }
+        return matriksModelAkhir;
+    }
 }

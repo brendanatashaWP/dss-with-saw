@@ -1,19 +1,18 @@
 package com.spk.saw.Model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.persistence.*;
 
 @Component
 @Entity
-@Table(name = "hasil")
+@Table(name = "matriks")
 @EntityListeners({AuditingEntityListener.class})
-public class NilaiModel {
+public class MatriksModel {
+    @Id
+    int id;
+
     public int getId() {
         return id;
     }
@@ -21,9 +20,6 @@ public class NilaiModel {
     public void setId(int id) {
         this.id = id;
     }
-
-    @Id
-    int id;
 
     public String getNamaKandidat() {
         return namaKandidat;
@@ -96,6 +92,9 @@ public class NilaiModel {
     public void setNilaiRearCamera(Double nilaiRearCamera) {
         this.nilaiRearCamera = nilaiRearCamera;
     }
+
+    @Column (nullable = true)
+    String namaKandidat;
     @Column (nullable = true)
     Double nilaiRam;
     @Column (nullable = true)
@@ -112,8 +111,5 @@ public class NilaiModel {
     Double nilaiBrand;
     @Column (nullable = true)
     Double nilaiRearCamera;
-    @Column (nullable = true)
-    String namaKandidat;
-
 
 }
