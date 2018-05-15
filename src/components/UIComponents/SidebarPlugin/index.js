@@ -16,7 +16,7 @@ const SidebarStore = {
     {
       name: 'Step 3: Hasilnya',
       icon: 'ti-view-list-alt',
-      path: '/admin/table-list'
+      path: '/admin/hasil-hitung'
     }
     // {
     //   name: 'Step 4: ',

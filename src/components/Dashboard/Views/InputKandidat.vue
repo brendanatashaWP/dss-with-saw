@@ -55,6 +55,7 @@
                     <option>4jt - 5jt</option>
                     <option>3jt - 4jt</option>
                     <option>2jt - 3jt</option>
+                    <option>1jt - 2jt</option>
                   </select>
                 </div>
               <!-- </div>
@@ -108,7 +109,7 @@
                   </select>
                 </div>
                 <div class="text-right">
-                  <button type="submit" @click="isiKandidat(0)" class="btn btn-success btn-fill" style="margin-right:20%; margin-top:2%; font-size: 10px;">Submit Kandidat 1</button>
+                  <button type="submit" @click="isiKandidat(1)" class="btn btn-success btn-fill" style="margin-right:20%; margin-top:2%; font-size: 10px;">Submit Kandidat 1</button>
                 </div>
               </div>
             </form>
@@ -170,6 +171,7 @@
                     <option>4jt - 5jt</option>
                     <option>3jt - 4jt</option>
                     <option>2jt - 3jt</option>
+                    <option>1jt - 2jt</option>
                   </select>
                 </div>
               <!-- </div>
@@ -223,7 +225,7 @@
                   </select>
                 </div>
                 <div class="text-right">
-                  <button type="submit" @click="isiKandidat(1)" class="btn btn-success btn-fill" style="margin-right:20%; margin-top:2%; font-size: 10px;">Submit Kandidat 2</button>
+                  <button type="submit" @click="isiKandidat(2)" class="btn btn-success btn-fill" style="margin-right:20%; margin-top:2%; font-size: 10px;">Submit Kandidat 2</button>
                 </div>
               </div>
             </form>
@@ -285,6 +287,7 @@
                     <option>4jt - 5jt</option>
                     <option>3jt - 4jt</option>
                     <option>2jt - 3jt</option>
+                    <option>1jt - 2jt</option>
                   </select>
                 </div>
               <!-- </div>
@@ -338,7 +341,7 @@
                   </select>
                 </div>
                 <div class="text-right">
-                  <button type="submit" @click="isiKandidat(2)" class="btn btn-success btn-fill" style="margin-right:20%; margin-top:2%; font-size: 10px;">Submit Kandidat 3</button>
+                  <button type="submit" @click="isiKandidat(3)" class="btn btn-success btn-fill" style="margin-right:20%; margin-top:2%; font-size: 10px;">Submit Kandidat 3</button>
                 </div>
               </div>
             </form>
@@ -400,6 +403,7 @@
                     <option>4jt - 5jt</option>
                     <option>3jt - 4jt</option>
                     <option>2jt - 3jt</option>
+                    <option>1jt - 2jt</option>
                   </select>
                 </div>
               <!-- </div>
@@ -453,7 +457,7 @@
                   </select>
                 </div>
                 <div class="text-right">
-                  <button type="submit" @click="isiKandidat(3)" class="btn btn-success btn-fill" style="margin-right:20%; margin-top:2%; font-size: 10px;">Submit Kandidat 4</button>
+                  <button type="submit" @click="isiKandidat(4)" class="btn btn-success btn-fill" style="margin-right:20%; margin-top:2%; font-size: 10px;">Submit Kandidat 4</button>
                 </div>
               </div>
             </form>
@@ -515,6 +519,7 @@
                     <option>4jt - 5jt</option>
                     <option>3jt - 4jt</option>
                     <option>2jt - 3jt</option>
+                    <option>1jt - 2jt</option>
                   </select>
                 </div>
               <!-- </div>
@@ -568,7 +573,7 @@
                   </select>
                 </div>
                 <div class="text-right">
-                  <button type="submit" @click="isiKandidat(4)" class="btn btn-success btn-fill" style="margin-right:20%; margin-top:2%; font-size: 10px;">Submit Kandidat 5</button>
+                  <button type="submit" @click="isiKandidat(5)" class="btn btn-success btn-fill" style="margin-right:20%; margin-top:2%; font-size: 10px;">Submit Kandidat 5</button>
                 </div>
               </div>
             </form>
@@ -630,6 +635,7 @@
                     <option>4jt - 5jt</option>
                     <option>3jt - 4jt</option>
                     <option>2jt - 3jt</option>
+                    <option>1jt - 2jt</option>
                   </select>
                 </div>
               <!-- </div>
@@ -683,7 +689,7 @@
                   </select>
                 </div>
                 <div class="text-right">
-                  <button type="submit" @click="isiKandidat(5)" class="btn btn-success btn-fill" style="margin-right:20%; margin-top:2%; font-size: 10px;">Submit Kandidat 6</button>
+                  <button type="submit" @click="isiKandidat(6)" class="btn btn-success btn-fill" style="margin-right:20%; margin-top:2%; font-size: 10px;">Submit Kandidat 6</button>
                 </div>
               </div>
             </form>
@@ -691,7 +697,7 @@
         </div>
       </div>
       <button type="submit" class="btn btn-info btn-fill" style="float:left"><a href="/#/admin/input-bobot" style="color:white" class="ti-arrow-left"> Back</a></button>
-      <button type="submit" class="btn btn-info btn-fill" @click="isiKandidat" style="float:right"><a href="/#/admin/stats" style="color:white" class="ti-arrow-right"> Next</a></button>
+      <button type="submit" class="btn btn-info btn-fill" @click="isiKandidat" style="float:right"><a href="/#/admin/hasil-hitung" style="color:white" class="ti-arrow-right"> Next</a></button>
     </div>
 </template>
 <script>
@@ -758,21 +764,20 @@
       }
     },
     mounted: function () {
-      this.getKandidat()
+      // this.getKandidat()
     },
     methods: {
       isiKandidat: function (id) {
-        alert(id)
         this.id = id
         this.putKandidat()
       },
       putKandidat: function () {
         const URL = '/api/step2/' + this.id
-        if (this.id === 0) {
+        if (this.id === 1) {
           axios.put(URL, {
             'namaKandidat': this.namaKandidat1,
             'ram': this.ramSelected1,
-            'processor': this.batterySelected1,
+            'processor': this.processorSelected1,
             'battery': this.batterySelected1,
             'price': this.priceSelected1,
             'intMemory': this.memorySelected1,
@@ -782,15 +787,16 @@
           })
           .then(res => {
             alert('Kandidat masuk')
+            // this.putNilai()
           })
           .catch(err => {
             alert(err)
           })
-        } else if (this.id === 1) {
+        } else if (this.id === 2) {
           axios.put(URL, {
             'namaKandidat': this.namaKandidat2,
             'ram': this.ramSelected2,
-            'processor': this.batterySelected2,
+            'processor': this.processorSelected2,
             'battery': this.batterySelected2,
             'price': this.priceSelected2,
             'intMemory': this.memorySelected2,
@@ -804,29 +810,80 @@
           .catch(err => {
             alert(err)
           })
+        } else if (this.id === 3) {
+          axios.put(URL, {
+            'namaKandidat': this.namaKandidat3,
+            'ram': this.ramSelected3,
+            'processor': this.processorSelected3,
+            'battery': this.batterySelected3,
+            'price': this.priceSelected3,
+            'intMemory': this.memorySelected3,
+            'screen': this.screenSelected3,
+            'brand': this.brandSelected3,
+            'rearCamera': this.rearCameraSelected3
+          })
+          .then(res => {
+            alert('Kandidat masuk')
+          })
+          .catch(err => {
+            alert(err)
+          })
+        } else if (this.id === 4) {
+          axios.put(URL, {
+            'namaKandidat': this.namaKandidat4,
+            'ram': this.ramSelected4,
+            'processor': this.processorSelected4,
+            'battery': this.batterySelected4,
+            'price': this.priceSelected4,
+            'intMemory': this.memorySelected4,
+            'screen': this.screenSelected4,
+            'brand': this.brandSelected4,
+            'rearCamera': this.rearCameraSelected4
+          })
+          .then(res => {
+            alert('Kandidat masuk')
+          })
+          .catch(err => {
+            alert(err)
+          })
+        } else if (this.id === 5) {
+          axios.put(URL, {
+            'namaKandidat': this.namaKandidat5,
+            'ram': this.ramSelected5,
+            'processor': this.processorSelected5,
+            'battery': this.batterySelected5,
+            'price': this.priceSelected5,
+            'intMemory': this.memorySelected5,
+            'screen': this.screenSelected5,
+            'brand': this.brandSelected5,
+            'rearCamera': this.rearCameraSelected5
+          })
+          .then(res => {
+            alert('Kandidat masuk')
+          })
+          .catch(err => {
+            alert(err)
+          })
+        } else if (this.id === 6) {
+          axios.put(URL, {
+            'namaKandidat': this.namaKandidat6,
+            'ram': this.ramSelected6,
+            'processor': this.processorSelected6,
+            'battery': this.batterySelected6,
+            'price': this.priceSelected6,
+            'intMemory': this.memorySelected6,
+            'screen': this.screenSelected6,
+            'brand': this.brandSelected6,
+            'rearCamera': this.rearCameraSelected6
+          })
+          .then(res => {
+            alert('Kandidat masuk')
+          })
+          .catch(err => {
+            alert(err)
+          })
         }
       }
-      // getKandidat: function () {
-      //   const URL = '/api/step2'
-      //   axios.get(URL)
-      //     .then(res => {
-      //       this.items = res.data
-      //       this.tampilKandidat(items)
-      //     })
-      //     .catch(err => {
-      //       alert(err)
-      //     })
-      // },
-      // getKandidatById: function (id) {
-      //   const URL = '/api/step2/' + id
-      //   axios.get(URL)
-      //     .then(res => {
-
-      //     })
-      // },
-      // tampilKandidat: function (items) {
-      //   this.namaKandidat1 = items.getKandidatById(items.id)
-      // }
     }
   }
 
